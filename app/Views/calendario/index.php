@@ -55,15 +55,17 @@
       background: rgba(255, 255, 255, .02);
     }
     .side .logo { color: var(--blue2); margin-bottom: 16px; }
-    .side a {
+    .side a, .side button {
       width: 42px; height: 42px;
       display: grid; place-items: center;
       color: #64748b; border-radius: 14px;
       text-decoration: none;
+      background: none; border: 0; padding: 0; cursor: pointer;
       transition: background .15s, color .15s;
     }
-    .side a:hover { color: #cbd5e1; background: rgba(148, 163, 184, .1); }
+    .side a:hover, .side button:hover { color: #cbd5e1; background: rgba(148, 163, 184, .1); }
     .side a.ativo { background: var(--blue); color: #fff; box-shadow: 0 10px 26px -10px rgba(37, 99, 235, .95); }
+    .side form { display: contents; }
     .side .fill { flex: 1; }
     .side .perfil {
       width: 38px; height: 38px;
@@ -286,10 +288,16 @@
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </a>
     <span class="fill"></span>
-    <a href="<?= site_url('logout') ?>" title="Sair" aria-label="Sair">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-    </a>
-    <a href="<?= site_url('logout') ?>" class="perfil" id="perfilIniciais" title="Sair"></a>
+    <form method="post" action="<?= site_url('logout') ?>">
+      <?= csrf_field() ?>
+      <button type="submit" title="Sair" aria-label="Sair">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      </button>
+    </form>
+    <form method="post" action="<?= site_url('logout') ?>">
+      <?= csrf_field() ?>
+      <button type="submit" class="perfil" id="perfilIniciais" title="Sair"></button>
+    </form>
   </aside>
 
   <main class="main">

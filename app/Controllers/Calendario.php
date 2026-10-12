@@ -194,7 +194,7 @@ class Calendario extends BaseController
             $ini = $ini->setTime(0, 0);
             $fim = $fim?->setTime(0, 0);
         }
-        if ($fim && $fim < $ini) {
+        if ($fim && ($fim < $ini || (! $diaInteiro && $fim == $ini))) {
             return $this->resposta(['erro' => 'O fim deve ser depois do início.'], 422);
         }
 

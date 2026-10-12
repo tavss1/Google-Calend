@@ -61,9 +61,9 @@ class TestarToken extends BaseCommand
                 $client->setSubject(env('GOOGLE_ORGANIZER_EMAIL'));
             }
 
-            $service  = new Calendar($client);
-            $calendario = $service->calendars->get($calId);
-            CLI::write('Agenda acessível: "' . $calendario->getSummary() . '" (fuso: ' . $calendario->getTimeZone() . ', acesso: ' . $calendario->getAccessRole() . ').', 'green');
+            $service = new Calendar($client);
+            $eventos = $service->events->listEvents($calId, ['maxResults' => 1, 'singleEvents' => true]);
+            CLI::write('Agenda acessível (events.list respondeu; ' . count($eventos->getItems()) . ' evento(s) na primeira página).', 'green');
             CLI::write('Autenticação OK. Pode rodar: php spark calendario:sync');
         } catch (\Throwable $t) {
             CLI::error('FALHA ao acessar a Agenda: ' . $t->getMessage());

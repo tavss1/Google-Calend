@@ -7,7 +7,7 @@ $routes->get('/', 'Home::index');
 
 $routes->get('login', 'Auth::login');
 $routes->post('login', 'Auth::tentar');
-$routes->get('logout', 'Auth::logout');
+$routes->post('logout', 'Auth::logout');
 
 $routes->get('calendario',          'Calendario::index',    ['filter' => 'auth']);
 $routes->get('calendario/feed',     'Calendario::feed',     ['filter' => 'auth']);
