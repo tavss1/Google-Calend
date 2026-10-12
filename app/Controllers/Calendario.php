@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Libraries\GoogleCalendarSync;
 use App\Models\EventoConvidadoModel;
 use App\Models\EventoModel;
+use CodeIgniter\Database\RawSql;
 use DateTimeImmutable;
 
 class Calendario extends BaseController
@@ -37,7 +38,7 @@ class Calendario extends BaseController
         $eventos = model(EventoModel::class)
             ->where('tipo !=', 'aniversario')
             ->where('inicio <', $end)
-            ->where('COALESCE(fim, inicio) >=', $start, false)
+            ->where(new RawSql('COALESCE(fim, inicio) >='), $start)
             ->findAll();
 
         // Lista de convidados só é enviada ao ADM (privacidade/LGPD).
